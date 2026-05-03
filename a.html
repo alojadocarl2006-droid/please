@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play Roblox With Me 🥺</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    text-align: center;
+    background: linear-gradient(to right, #74b9ff, #a29bfe);
+    color: white;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 50px;
+}
+
+img {
+    width: 200px;
+    border-radius: 20px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#yesBtn { background: #00cec9; }
+#noBtn { background: #ff7675; position: absolute; }
+#playMusic { background: #0984e3; color: white; }
+
+.heart {
+    position: absolute;
+    animation: float 3s linear;
+}
+
+@keyframes float {
+    from { transform: translateY(0); opacity:1; }
+    to { transform: translateY(-500px); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>pls laro tayo roblox kahit 1 game lang 🥺👉👈</h1>
+
+<img id="cuteImg" src="./1.jpg" onerror="this.src='./2.jpg'">
+
+<br>
+
+<button id="yesBtn">Yes 💙</button>
+<button id="noBtn">No 😭</button>
+
+<p id="msg"></p>
+
+<audio id="music" loop>
+    <source src="./music.mp3" type="audio/mpeg">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("music");
+const img = document.getElementById("cuteImg");
+const msg = document.getElementById("msg");
+
+const images = ["./1.jpg","./2.jpg","./3.jpg"];
+let i = 0;
+
+// 🔥 AUTO PLAY (after first click anywhere)
+document.addEventListener("click", () => {
+    music.play().catch(() => {});
+}, { once: true });
+
+// YES BUTTON
+yesBtn.onclick = () => {
+    msg.innerHTML = "Yey!! tara na agad mag Roblox 😭💙";
+
+    confetti({
+        particleCount: 150,
+        spread: 90
+    });
+};
+
+// NO BUTTON (tumatakas)
+noBtn.onmouseover = () => {
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+};
+
+// CHANGE IMAGE EVERY CLICK
+document.body.onclick = () => {
+    i = (i + 1) % images.length;
+    img.src = images[i];
+};
+
+// HEARTS
+setInterval(() => {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💖";
+    h.style.left = Math.random() * window.innerWidth + "px";
+    h.style.top = window.innerHeight + "px";
+
+    document.body.appendChild(h);
+
+    setTimeout(() => h.remove(), 3000);
+}, 400);
+</script>
+
+</body>
+</html>
